@@ -8,6 +8,6 @@ if ( ! ( $course_status && ( 'completed' != strtolower( $course_status ) ) ) ){
 ?>
 <div class="course-status">
 <?php
-    printf( __( 'You have taken this course but it\'s status is %s', 'learn_press' ), $course_status );
+    printf( __( 'You have taken this course but it\'s status is %s', 'education-lite' ), $course_status );
 ?>
 </div>

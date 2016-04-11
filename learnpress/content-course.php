@@ -44,7 +44,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	<footer class="entry-footer">
 		<?php
 		do_action( 'learn_press_entry_footer_archive' );
-		edit_post_link( __( 'Edit', 'learn_press' ), '<span class="edit-link">', '</span>' );
+		edit_post_link( __( 'Edit', 'education-lite' ), '<span class="edit-link">', '</span>' );
 		?>
 	</footer>
 	-->

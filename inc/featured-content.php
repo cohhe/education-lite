@@ -429,8 +429,8 @@ class Featured_Content {
 	 */
 	public static function customize_register( $wp_customize ) {
 		$wp_customize->add_section( 'featured_content', array(
-			'title'          => __( 'Featured Content', 'education' ),
-			'description'    => sprintf( __( 'Use the <a href="%1$s">"featured" tag</a> to feature your posts. You can change this to a tag of your choice; if no posts match the tag, <a href="%2$s">sticky posts</a> will be displayed instead.', 'education' ), admin_url( '/edit.php?tag=featured' ), admin_url( '/edit.php?show_sticky=1' ) ),
+			'title'          => __( 'Featured Content', 'education-lite' ),
+			'description'    => sprintf( __( 'Use the <a href="%1$s">"featured" tag</a> to feature your posts. You can change this to a tag of your choice; if no posts match the tag, <a href="%2$s">sticky posts</a> will be displayed instead.', 'education-lite' ), admin_url( '/edit.php?tag=featured' ), admin_url( '/edit.php?show_sticky=1' ) ),
 			'priority'       => 130,
 			'theme_supports' => 'featured-content',
 		) );
@@ -459,7 +459,7 @@ class Featured_Content {
 
 		// Add Featured Content controls.
 		$wp_customize->add_control( 'featured-content[order]', array(
-			'label'    => __( 'Post order', 'education' ),
+			'label'    => __( 'Post order', 'education-lite' ),
 			'section'  => 'featured_content',
 			'type'       => 'select',
 			'choices'    => array(
@@ -470,18 +470,18 @@ class Featured_Content {
 			'priority' => 15,
 		) );
 		$wp_customize->add_control( 'featured-content[tag-name]', array(
-			'label'    => __( 'Tag Name', 'education' ),
+			'label'    => __( 'Tag Name', 'education-lite' ),
 			'section'  => 'featured_content',
 			'priority' => 20,
 		) );
 		$wp_customize->add_control( 'featured-content[hide-tag]', array(
-			'label'    => __( 'Don&rsquo;t display tag on front end.', 'education' ),
+			'label'    => __( 'Don&rsquo;t display tag on front end.', 'education-lite' ),
 			'section'  => 'featured_content',
 			'type'     => 'checkbox',
 			'priority' => 40,
 		) );
 		$wp_customize->add_control( 'featured-content[quantity]', array(
-			'label'    => __( 'Post limit', 'education' ),
+			'label'    => __( 'Post limit', 'education-lite' ),
 			'section'  => 'featured_content',
 			'priority' => 30,
 		) );

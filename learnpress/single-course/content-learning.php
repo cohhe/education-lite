@@ -17,10 +17,10 @@ global $course;
 
 	<div class="course-main-content">
 		<ul>
-			<li><a href="#description" class="icon-doc-text-inv"><?php _e('Description', 'education'); ?></a></li>
-			<li><a href="#cirriculum" class="icon-book"><?php _e('Cirriculum', 'education'); ?></a></li>
-			<li><a href="#instructors" class="icon-user"><?php _e('Instructor', 'education'); ?></a></li>
-			<li><a href="#reviews" class="icon-star"><?php _e('Reviews', 'education'); ?></a></li>
+			<li><a href="#description" class="icon-doc-text-inv"><?php _e('Description', 'education-lite'); ?></a></li>
+			<li><a href="#cirriculum" class="icon-book"><?php _e('Cirriculum', 'education-lite'); ?></a></li>
+			<li><a href="#instructors" class="icon-user"><?php _e('Instructor', 'education-lite'); ?></a></li>
+			<li><a href="#reviews" class="icon-star"><?php _e('Reviews', 'education-lite'); ?></a></li>
 		</ul>
 		<div id="description">
 			<?php if ( $course->is( 'viewing' ) == 'lesson' ) {

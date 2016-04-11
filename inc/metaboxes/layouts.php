@@ -5,14 +5,14 @@
 
 $config = array(
 	'id'       => 'vh_layouts',
-	'title'    => __('Layouts', 'education'),
+	'title'    => __('Layouts', 'education-lite'),
 	'pages'    => array('page', 'post'),
 	'context'  => 'normal',
 	'priority' => 'high',
 );
 
 $options = array(array(
-	'name'    => __('Layout type', 'education'),
+	'name'    => __('Layout type', 'education-lite'),
 	'id'      => 'layouts',
 	'type'    => 'layouts',
 	'only'    => 'page,post',

@@ -68,10 +68,10 @@ if ( ! function_exists( 'education_setup' ) ) :
 		 *
 		 * Translations can be added to the /languages/ directory.
 		 * If you're building a theme based on Education 1.0, use a find and
-		 * replace to change 'education' to the name of your theme in all
+		 * replace to change 'education-lite' to the name of your theme in all
 		 * template files.
 		 */
-		load_theme_textdomain( 'education', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'education-lite', get_template_directory() . '/languages' );
 
 		// This theme styles the visual editor to resemble the theme style.
 		add_editor_style( array( 'css/editor-style.css' ) );
@@ -91,8 +91,8 @@ if ( ! function_exists( 'education_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in two locations.
 		register_nav_menus( array(
-			'primary'   => __( 'Top primary menu', 'education' ),
-			'footer'    => __( 'Footer menu', 'education' ),
+			'primary'   => __( 'Top primary menu', 'education-lite' ),
+			'footer'    => __( 'Footer menu', 'education-lite' ),
 		) );
 
 		/*
@@ -118,6 +118,8 @@ if ( ! function_exists( 'education_setup' ) ) :
 
 		// This theme uses its own gallery styles.
 		add_filter( 'use_default_gallery_style', '__return_false' );
+
+		add_theme_support( "title-tag" )
 	}
 endif; // education_setup
 add_action( 'after_setup_theme', 'education_setup' );
@@ -178,8 +180,8 @@ function education_tag_list() {
 	if ( $tags_list ) {
 		$entry_utility .= '
 		<div class="tag-link">
-		<span class="tag-title">'.__('Tags', 'education').'</span>
-		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'education' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
+		<span class="tag-title">'.__('Tags', 'education-lite').'</span>
+		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'education-lite' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
 		$entry_utility .= '
 		</div>';
 	}
@@ -194,7 +196,7 @@ function education_category_list() {
 		$entry_utility .= '
 		<div class="category-link">
 		<i class="entypo_icon icon-folder-open"></i>
-		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'education' ), 'entry-utility-prep entry-utility-prep-category-links', $tags_list );
+		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'education-lite' ), 'entry-utility-prep entry-utility-prep-category-links', $tags_list );
 		$entry_utility .= '
 		</div>';
 	}
@@ -223,7 +225,7 @@ function education_prev_next_links() {
 		if (!empty( $prev_post )) {
 			$output .= '
 			<div class="nav_button left">
-				<h3 class="prev-post-text">'. __('Previous post', 'education').'</h3>
+				<h3 class="prev-post-text">'. __('Previous post', 'education-lite').'</h3>
 				<div class="prev-post-link">
 					<a href="'. get_permalink( $prev_post->ID ).'" class="prev_blog_post icon-left">'.get_the_title( $prev_post->ID ).'</a>
 				</div>
@@ -233,7 +235,7 @@ function education_prev_next_links() {
 		if (!empty( $next_post )) {
 			$output .= '
 			<div class="nav_button right">
-				<h3 class="next-post-text">'.__('Next post', 'education').'</h3>
+				<h3 class="next-post-text">'.__('Next post', 'education-lite').'</h3>
 				<div class="next-post-link">
 					<a href="'. get_permalink( $next_post->ID ).'" class="next_blog_post icon-right">'. get_the_title( $next_post->ID ).'</a>
 				</div>
@@ -316,29 +318,29 @@ function education_has_featured_posts() {
  */
 function education_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Post Sidebar', 'education' ),
+		'name'          => __( 'Post Sidebar', 'education-lite' ),
 		'id'            => 'education-sidebar-1',
 		'class'			=> 'col-sm-4 col-md-4 col-lg-4',
-		'description'   => __( 'Additional sidebar that appears on the right or left.', 'education' ),
+		'description'   => __( 'Additional sidebar that appears on the right or left.', 'education-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Content Sidebar', 'education' ),
+		'name'          => __( 'Content Sidebar', 'education-lite' ),
 		'id'            => 'education-sidebar-2',
 		'class'			=> 'col-sm-4 col-md-4 col-lg-4',
-		'description'   => __( 'Additional sidebar that appears on the right or left.', 'education' ),
+		'description'   => __( 'Additional sidebar that appears on the right or left.', 'education-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Footer Widget Area 1', 'education' ),
+		'name'          => __( 'Footer Widget Area 1', 'education-lite' ),
 		'id'            => 'education-sidebar-3',
-		'description'   => __( 'Appears in the footer section of the site.', 'education' ),
+		'description'   => __( 'Appears in the footer section of the site.', 'education-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -389,7 +391,7 @@ add_filter( 'excerpt_length', 'education_excerpt_length', 999 );
 function education_breadcrumbs() {
 	$delimiter = get_option('vh_breadcrumb_delimiter') ? get_option('vh_breadcrumb_delimiter') : '<span class="delimiter">/</span>';
 
-	$home   = __('Home', 'education'); // text for the 'Home' link
+	$home   = __('Home', 'education-lite'); // text for the 'Home' link
 	$before = '<span class="current">'; // tag before the current crumb
 	$after  = '</span>'; // tag after the current crumb
 
@@ -473,7 +475,7 @@ function education_breadcrumbs() {
 		if (get_query_var('paged')) {
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ' (';
-			$output .= __('Page', 'education') . ' ' . get_query_var('paged');
+			$output .= __('Page', 'education-lite') . ' ' . get_query_var('paged');
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ')';
 		}
@@ -684,7 +686,7 @@ function education_the_related_posts() {
 
 		$my_query = new wp_query( $args ); ?>
 
-		<h3 class="related-articles-title"><?php _e( 'Related posts', 'education' ); ?></h3>
+		<h3 class="related-articles-title"><?php _e( 'Related posts', 'education-lite' ); ?></h3>
 		<div class="related-articles">
 			<?php
 			if ( $my_query->have_posts() ) {
@@ -698,17 +700,17 @@ function education_the_related_posts() {
 								if ( has_post_thumbnail() ) {
 									the_post_thumbnail('education-medium-thumbnail');
 								} else {
-									echo '<img src="'.get_template_directory_uri().'/images/no-post-img.png" class="related-post-image" alt="'.__('Post without image', 'education').'">';
+									echo '<img src="'.get_template_directory_uri().'/images/no-post-img.png" class="related-post-image" alt="'.__('Post without image', 'education-lite').'">';
 								}
 								?>
-								<span class="single-open-post-date"><?php echo human_time_diff(get_the_time('U',get_the_ID()),current_time('timestamp')) .  ' '.__('ago', 'education'); ?></span>
+								<span class="single-open-post-date"><?php echo human_time_diff(get_the_time('U',get_the_ID()),current_time('timestamp')) .  ' '.__('ago', 'education-lite'); ?></span>
 							</div>
 						</a>
 						<a href="<?php the_permalink(); ?>" class="related-title"><?php the_title(); ?></a>
 					</div>
 				<?php }
 			} else { ?>
-				<h3 class="no-related-posts"><?php _e('There\'s no related posts!', 'education'); ?></h3>
+				<h3 class="no-related-posts"><?php _e('There\'s no related posts!', 'education-lite'); ?></h3>
 			<?php } ?>
 			<div class="clearfix"></div>
 		</div>
@@ -746,7 +748,7 @@ function education_wp_title( $title, $sep ) {
 
 	// Add a page number if necessary.
 	if ( $paged >= 2 || $page >= 2 ) {
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'education' ), max( $paged, $page ) );
+		$title = "$title $sep " . sprintf( __( 'Page %s', 'education-lite' ), max( $paged, $page ) );
 	}
 
 	return $title;
@@ -997,7 +999,7 @@ function vh_register_required_plugins() {
 	 * end of each line for what each argument will be.
 	 */
 	$config = array(
-		'domain'       		=> 'education',         	// Text domain - likely want to be the same as your theme.
+		'domain'       		=> 'education-lite',         	// Text domain - likely want to be the same as your theme.
 		'default_path' 		=> '',                         	// Default absolute path to pre-packaged plugins
 		'parent_menu_slug' 	=> 'themes.php', 				// Default parent menu slug
 		'parent_url_slug' 	=> 'themes.php', 				// Default parent URL slug
@@ -1006,23 +1008,23 @@ function vh_register_required_plugins() {
 		'is_automatic'    	=> true,					   	// Automatically activate plugins after installation or not
 		'message' 			=> '',							// Message to output right before the plugins table
 		'strings'      		=> array(
-			'page_title'                       			=> __( 'Install Required Plugins', 'education' ),
-			'menu_title'                       			=> __( 'Install Plugins', 'education' ),
-			'installing'                       			=> __( 'Installing Plugin: %s', 'education' ), // %1$s = plugin name
-			'oops'                             			=> __( 'Something went wrong with the plugin API.', 'education' ),
-			'notice_can_install_required'     			=> _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'education' ), // %1$s = plugin name(s)
-			'notice_can_install_recommended'			=> _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'education' ), // %1$s = plugin name(s)
-			'notice_cannot_install'  					=> _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'education' ), // %1$s = plugin name(s)
-			'notice_can_activate_required'    			=> _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'education' ), // %1$s = plugin name(s)
-			'notice_can_activate_recommended'			=> _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'education' ), // %1$s = plugin name(s)
-			'notice_cannot_activate' 					=> _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'education' ), // %1$s = plugin name(s)
-			'notice_ask_to_update' 						=> _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'education' ), // %1$s = plugin name(s)
-			'notice_cannot_update' 						=> _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'education' ), // %1$s = plugin name(s)
-			'install_link' 					  			=> _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'education' ),
-			'activate_link' 				  			=> _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'education' ),
-			'return'                           			=> __( 'Return to Required Plugins Installer', 'education' ),
-			'plugin_activated'                 			=> __( 'Plugin activated successfully.', 'education' ),
-			'complete' 									=> __( 'All plugins installed and activated successfully. %s', 'education' ), // %1$s = dashboard link
+			'page_title'                       			=> __( 'Install Required Plugins', 'education-lite' ),
+			'menu_title'                       			=> __( 'Install Plugins', 'education-lite' ),
+			'installing'                       			=> __( 'Installing Plugin: %s', 'education-lite' ), // %1$s = plugin name
+			'oops'                             			=> __( 'Something went wrong with the plugin API.', 'education-lite' ),
+			'notice_can_install_required'     			=> _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'education-lite' ), // %1$s = plugin name(s)
+			'notice_can_install_recommended'			=> _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'education-lite' ), // %1$s = plugin name(s)
+			'notice_cannot_install'  					=> _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'education-lite' ), // %1$s = plugin name(s)
+			'notice_can_activate_required'    			=> _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'education-lite' ), // %1$s = plugin name(s)
+			'notice_can_activate_recommended'			=> _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'education-lite' ), // %1$s = plugin name(s)
+			'notice_cannot_activate' 					=> _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'education-lite' ), // %1$s = plugin name(s)
+			'notice_ask_to_update' 						=> _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'education-lite' ), // %1$s = plugin name(s)
+			'notice_cannot_update' 						=> _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'education-lite' ), // %1$s = plugin name(s)
+			'install_link' 					  			=> _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'education-lite' ),
+			'activate_link' 				  			=> _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'education-lite' ),
+			'return'                           			=> __( 'Return to Required Plugins Installer', 'education-lite' ),
+			'plugin_activated'                 			=> __( 'Plugin activated successfully.', 'education-lite' ),
+			'complete' 									=> __( 'All plugins installed and activated successfully. %s', 'education-lite' ), // %1$s = dashboard link
 			'nag_type'									=> 'updated' // Determines admin notice type - can only be 'updated' or 'error'
 		)
 	);

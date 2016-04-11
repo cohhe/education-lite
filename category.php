@@ -14,7 +14,7 @@ global $education_site_width;
 ?>
 <div id="main-content" class="main-content row">
 	<header class="entry-header">
-		<h1 class="entry-title"><?php printf( __( 'Category Archives: <span>%s</span>', 'education' ), single_cat_title( '', false ) ); ?></h1>
+		<h1 class="entry-title"><?php printf( __( 'Category Archives: <span>%s</span>', 'education-lite' ), single_cat_title( '', false ) ); ?></h1>
 		<?php echo education_breadcrumbs(); ?>
 	</header><!-- .archive-header -->
 	<section id="primary" class="content-area <?php echo $education_site_width; ?>">

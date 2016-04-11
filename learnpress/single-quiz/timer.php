@@ -23,7 +23,7 @@ if ( !$quiz->has( 'questions' ) ) {
 		<?php
 		echo apply_filters(
 			'learn_press_quiz_time_label',
-			$quiz->duration > 59 ? sprintf( '%s/%s/%s', __( 'hours', 'learnpress' ), __( 'mins', 'learnpress' ), __( 'secs', 'learnpress' ) ) : sprintf( '%s/%s', __( 'mins', 'learnpress' ), __( 'secs', 'learnpress' ) )
+			$quiz->duration > 59 ? sprintf( '%s/%s/%s', __( 'hours', 'education-lite' ), __( 'mins', 'education-lite' ), __( 'secs', 'education-lite' ) ) : sprintf( '%s/%s', __( 'mins', 'education-lite' ), __( 'secs', 'education-lite' ) )
 		);
 		?>
 	</p>

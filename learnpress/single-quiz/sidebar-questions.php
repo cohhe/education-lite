@@ -8,7 +8,7 @@
 <?php do_action( 'learn_press_quiz_questions_before_questions' ); ?>
 <?php if( $question_list ){?>
 <div class="quiz-questions hidden">
-	<?php $title = apply_filters( 'learn_press_list_of_questions_text', esc_attr__( 'List of questions', 'learn_press' ) ); ?>
+	<?php $title = apply_filters( 'learn_press_list_of_questions_text', esc_attr__( 'List of questions', 'education-lite' ) ); ?>
 	<?php if ( $title ): ?>
 		<h3><?php echo $title; ?></h3>
 	<?php endif; ?>

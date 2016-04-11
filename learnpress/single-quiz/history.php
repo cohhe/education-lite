@@ -21,7 +21,7 @@ reset( $history );
 
 $history_count = sizeof( $history );
 $view_id       = !empty( $_REQUEST['history_id'] ) ? $_REQUEST['history_id'] : key( $history );
-$heading       = sprintf( __( 'Other results (newest %d items)', 'learnpress' ), $limit );
+$heading       = sprintf( __( 'Other results (newest %d items)', 'education-lite' ), $limit );
 $heading       = apply_filters( 'learn_press_list_questions_heading', $heading );
 ?>
 
@@ -37,8 +37,8 @@ if ( $history_count > 1 ) {
 		<thead>
 		<tr>
 			<th width="50" align="right">#</th>
-			<th><?php _e( 'Time', 'learnpress' ); ?></th>
-			<th><?php _e( 'Result', 'learnpress' ); ?></th>
+			<th><?php _e( 'Time', 'education-lite' ); ?></th>
+			<th><?php _e( 'Result', 'education-lite' ); ?></th>
 		</tr>
 		</thead>
 		<?php foreach ( $history as $item ) {
@@ -59,8 +59,8 @@ if ( $history_count > 1 ) {
 					printf( "%01.2f (%%)", ( $item->results['mark'] / $mark ) * 100 ); ?>
 					<!--
 				<p class="quiz-history-actions">
-					<a href="<?php echo add_query_arg( 'history_id', $item->history_id ); ?>"><?php _e( 'View', 'learnpress' ); ?></a>
-					<a href=""><?php _e( 'Use as result', 'learnpress' ); ?></a>
+					<a href="<?php echo add_query_arg( 'history_id', $item->history_id ); ?>"><?php _e( 'View', 'education-lite' ); ?></a>
+					<a href=""><?php _e( 'Use as result', 'education-lite' ); ?></a>
 				</p>
 				-->
 				</td>
@@ -71,5 +71,5 @@ if ( $history_count > 1 ) {
 	<?php
 
 } else {
-	learn_press_display_message( __( 'No history found!', 'learnpress' ) );
+	learn_press_display_message( __( 'No history found!', 'education-lite' ) );
 }

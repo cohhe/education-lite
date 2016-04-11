@@ -30,28 +30,28 @@ global $education_site_width;
 				<h1 class="archive-title">
 					<?php
 						if ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'education' );
+							_e( 'Asides', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'education' );
+							_e( 'Images', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'education' );
+							_e( 'Videos', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-							_e( 'Audio', 'education' );
+							_e( 'Audio', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'education' );
+							_e( 'Quotes', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'education' );
+							_e( 'Links', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-							_e( 'Galleries', 'education' );
+							_e( 'Galleries', 'education-lite' );
 
 						else :
-							_e( 'Archives', 'education' );
+							_e( 'Archives', 'education-lite' );
 
 						endif;
 					?>

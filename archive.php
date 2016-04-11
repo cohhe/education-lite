@@ -31,16 +31,16 @@ global $education_site_width;
 				<h1 class="page-title">
 					<?php
 						if ( is_day() ) :
-							printf( __( 'Daily Archives: <span>%s</span>', 'education' ), get_the_date() );
+							printf( __( 'Daily Archives: <span>%s</span>', 'education-lite' ), get_the_date() );
 
 						elseif ( is_month() ) :
-							printf( __( 'Monthly Archives: <span>%s</span>', 'education' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'education' ) ) );
+							printf( __( 'Monthly Archives: <span>%s</span>', 'education-lite' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'education-lite' ) ) );
 
 						elseif ( is_year() ) :
-							printf( __( 'Yearly Archives: <span>%s</span>', 'education' ), get_the_date( _x( 'Y', 'yearly archives date format', 'education' ) ) );
+							printf( __( 'Yearly Archives: <span>%s</span>', 'education-lite' ), get_the_date( _x( 'Y', 'yearly archives date format', 'education-lite' ) ) );
 
 						else :
-							_e( 'Archives', 'education' );
+							_e( 'Archives', 'education-lite' );
 
 						endif;
 					?>

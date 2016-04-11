@@ -42,7 +42,7 @@ if ( !is_single() ) {
 				$img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'education-full-width' );
 				echo '<div class="single-post-image-container">';
 				if ( !empty($img) ) {
-					echo '<img src="'.$img['0'].'" class="single-post-image" alt="'.__('Post with image', 'education').'">';
+					echo '<img src="'.$img['0'].'" class="single-post-image" alt="'.__('Post with image', 'education-lite').'">';
 				}
 				echo '<div class="single-post-meta">';
 					education_posted_on();
@@ -76,7 +76,7 @@ if ( !is_single() ) {
 	<?php else : ?>
 	<div class="entry-content">
 		<div id="entry-content-wrapper">
-			<?php the_content( __( 'Continue reading', 'education' ).' '.'<span class="meta-nav">&rarr;</span>' ); ?>
+			<?php the_content( __( 'Continue reading', 'education-lite' ).' '.'<span class="meta-nav">&rarr;</span>' ); ?>
 			<div class="single-post-bottom-meta">
 			<?php
 				education_tag_list();
@@ -90,7 +90,7 @@ if ( !is_single() ) {
 		</div>
 		<?php
 			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'education' ) . '</span>',
+				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'education-lite' ) . '</span>',
 				'after'       => '<div class="clearfix"></div></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',

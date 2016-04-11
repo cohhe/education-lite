@@ -84,10 +84,10 @@ function education_post_nav() {
 		<div class="nav-links">
 			<?php
 			if ( is_attachment() ) :
-				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'education' ) );
+				previous_post_link( '%link', __( '<span class="meta-nav">Published In</span>%title', 'education-lite' ) );
 			else :
-				previous_post_link( '%link', __( '<span class="glyphicon glyphicon-chevron-left"></span><span class="post-left">%title</span>', 'education' ) );
-				next_post_link( '%link', __( '<span class="glyphicon glyphicon-chevron-right"></span><span class="post-right">%title</span>', 'education' ) );
+				previous_post_link( '%link', __( '<span class="glyphicon glyphicon-chevron-left"></span><span class="post-left">%title</span>', 'education-lite' ) );
+				next_post_link( '%link', __( '<span class="glyphicon glyphicon-chevron-right"></span><span class="post-right">%title</span>', 'education-lite' ) );
 			endif;
 			?>
 		</div><!-- .nav-links -->

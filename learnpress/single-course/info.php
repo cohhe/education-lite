@@ -23,7 +23,7 @@ if ( $results == 'evaluate_lesson' ) {
 
 ?>
 
-<h3 class="entry-title"><?php _e('Course features', 'learnpress'); ?></h3>
+<h3 class="entry-title"><?php _e('Course features', 'education-lite'); ?></h3>
 <ul class="course-info-list">
 	<li class="course-info-item"><span class="info-item-label icon-docs">Lectures</span><span class="info-item-text"><?php echo $course_info['lessons']; ?></span></li>
 	<li class="course-info-item"><span class="info-item-label icon-puzzle">Quizzes</span><span class="info-item-text"><?php echo $course_info['quizzes']; ?></span></li>

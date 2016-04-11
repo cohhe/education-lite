@@ -23,7 +23,7 @@ $gplus_link = get_theme_mod('education_footergplus', '');
 			$show_scroll_to_top = get_theme_mod('education_scrolltotop', false);
 
 			if ( $show_scroll_to_top ) { ?>
-				<a class="scroll-to-top" href="#"><?php _e( 'Up', 'education' ); ?></a>
+				<a class="scroll-to-top" href="#"><?php _e( 'Up', 'education-lite' ); ?></a>
 			<?php } ?>
 			<div class="site-footer-container">
 				<footer id="colophon" class="site-footer" role="contentinfo">

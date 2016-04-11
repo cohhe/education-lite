@@ -31,7 +31,7 @@ get_header();
 						<span class="full-size-link"><a href="<?php echo wp_get_attachment_url(); ?>"><?php echo $metadata['width']; ?> &times; <?php echo $metadata['height']; ?></a></span>
 
 						<span class="parent-post-link"><a href="<?php echo get_permalink( $post->post_parent ); ?>" rel="gallery"><?php echo get_the_title( $post->post_parent ); ?></a></span>
-						<?php edit_post_link( __( 'Edit', 'education' ), '<span class="edit-link">', '</span>' ); ?>
+						<?php edit_post_link( __( 'Edit', 'education-lite' ), '<span class="edit-link">', '</span>' ); ?>
 					</div><!-- .entry-meta -->
 				</header><!-- .entry-header -->
 
@@ -53,7 +53,7 @@ get_header();
 					</div>
 					<?php
 						wp_link_pages( array(
-							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'education' ) . '</span>',
+							'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'education-lite' ) . '</span>',
 							'after'       => '<div class="clearfix"></div></div>',
 							'link_before' => '<span>',
 							'link_after'  => '</span>',
@@ -64,8 +64,8 @@ get_header();
 
 			<nav id="image-navigation" class="navigation image-navigation">
 				<div class="nav-links">
-				<?php previous_image_link( false, '<div class="previous-image">' . __( 'Previous Image', 'education' ) . '</div>' ); ?>
-				<?php next_image_link( false, '<div class="next-image">' . __( 'Next Image', 'education' ) . '</div>' ); ?>
+				<?php previous_image_link( false, '<div class="previous-image">' . __( 'Previous Image', 'education-lite' ) . '</div>' ); ?>
+				<?php next_image_link( false, '<div class="next-image">' . __( 'Next Image', 'education-lite' ) . '</div>' ); ?>
 				</div><!-- .nav-links -->
 			</nav><!-- #image-navigation -->
 
