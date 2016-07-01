@@ -119,7 +119,7 @@ if ( ! function_exists( 'education_setup' ) ) :
 		// This theme uses its own gallery styles.
 		add_filter( 'use_default_gallery_style', '__return_false' );
 
-		add_theme_support( "title-tag" )
+		add_theme_support( "title-tag" );
 	}
 endif; // education_setup
 add_action( 'after_setup_theme', 'education_setup' );
@@ -530,7 +530,9 @@ function education_scripts() {
 
 	wp_enqueue_script( 'jquery-ui-tabs' );
 
-	wp_enqueue_script('googlemap', '//maps.googleapis.com/maps/api/js?sensor=false', array(), '3', false);
+	if ( get_theme_mod('education_gmap_key', '') ) {
+		wp_enqueue_script('googlemap', '//maps.googleapis.com/maps/api/js?sensor=false&key='.get_theme_mod('cerium_gmap_key', ''), array(), '3', false);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'education_scripts' );
 

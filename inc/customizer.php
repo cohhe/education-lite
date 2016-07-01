@@ -395,6 +395,26 @@ function education_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Google maps key
+	$wp_customize->add_section( 'education_google_maps_key', array(
+		'priority'       => 20,
+		'capability'     => 'edit_theme_options',
+		'title'          => __( 'Google maps key' , 'education-lite'),
+		'description'    => __( 'Google maps API key so theme can use Google maps API.' , 'education-lite'),
+		'panel'          => 'education_general_panel'
+	) );
+
+	$wp_customize->add_setting( 'education_gmap_key', array( 'sanitize_callback' => 'sanitize_text_field' ) );
+
+	$wp_customize->add_control(
+		'education_gmap_key',
+		array(
+			'label'      => 'Google maps key',
+			'section'    => 'education_google_maps_key',
+			'type'       => 'text',
+		)
+	);
+
 	// Social links
 	$wp_customize->add_section( new education_Customized_Section( $wp_customize, 'education_social_links', array(
 		'priority'       => 300,
