@@ -30,14 +30,14 @@ $sm_authot_description = get_the_author_meta( 'description', $sm_author_id );
 					 * We reset this later so we can run the loop properly
 					 * with a call to rewind_posts().
 					 */
-					_e('Author: ', 'education-lite');
+					esc_html_e('Author: ', 'education-lite');
 					the_author();
 				?>
 			</h1>
 			<?php echo education_breadcrumbs(); ?>
 		</div>
 	</header><!-- .archive-header -->
-	<section id="primary" class="content-area <?php echo $education_site_width; ?>">
+	<section id="primary" class="content-area <?php echo esc_attr($education_site_width); ?>">
 		<div id="content" class="site-content" role="main">
 
 			<?php if ( have_posts() ) : ?>

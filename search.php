@@ -13,10 +13,10 @@ global $education_site_width;
 ?>
 <div id="main-content" class="main-content row">
 	<header class="entry-header">
-		<h1 class="entry-title"><?php _e( 'Search', 'education-lite' ); ?></h1>
+		<h1 class="entry-title"><?php esc_html_e( 'Search', 'education-lite' ); ?></h1>
 		<?php echo education_breadcrumbs(); ?>
 	</header><!-- .page-header -->
-	<section id="primary" class="content-area <?php echo $education_site_width; ?>">
+	<section id="primary" class="content-area <?php echo esc_attr($education_site_width); ?>">
 		<div id="content" class="site-content" role="main">
 
 			<?php if ( have_posts() ) : ?>

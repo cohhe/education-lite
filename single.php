@@ -22,7 +22,7 @@ global $education_site_width, $education_layout_type;
 	<?php if ( $education_layout_type == 'left' ) {
 		get_sidebar( 'post' );
 	} ?>
-	<div id="primary" class="content-area <?php echo $education_site_width; ?>">
+	<div id="primary" class="content-area <?php echo esc_attr($education_site_width); ?>">
 		<div id="content" class="site-content" role="main">
 			<?php
 				// Start the Loop.

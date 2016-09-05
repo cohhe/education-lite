@@ -16,8 +16,8 @@
  */
 function education_customize_register( $wp_customize ) {
 	// Add custom description to Colors and Background sections.
-	$wp_customize->get_section( 'colors' )->description           = __( 'Background may only be visible on wide screens.', 'education-lite' );
-	$wp_customize->get_section( 'background_image' )->description = __( 'Background may only be visible on wide screens.', 'education-lite' );
+	$wp_customize->get_section( 'colors' )->description           = esc_html__( 'Background may only be visible on wide screens.', 'education-lite' );
+	$wp_customize->get_section( 'background_image' )->description = esc_html__( 'Background may only be visible on wide screens.', 'education-lite' );
 
 	// Add postMessage support for site title and description.
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
@@ -25,48 +25,40 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 	// Rename the label to "Site Title Color" because this only affects the site title in this theme.
-	$wp_customize->get_control( 'header_textcolor' )->label = __( 'Site Title Color', 'education-lite' );
+	$wp_customize->get_control( 'header_textcolor' )->label = esc_html__( 'Site Title Color', 'education-lite' );
 
 	// Rename the label to "Display Site Title & Tagline" in order to make this option extra clear.
-	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'education-lite' );
+	$wp_customize->get_control( 'display_header_text' )->label = esc_html__( 'Display Site Title &amp; Tagline', 'education-lite' );
 
 	// Add General setting panel and configure settings inside it
 	$wp_customize->add_panel( 'education_general_panel', array(
 		'priority'       => 250,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'General settings' , 'education-lite'),
-		'description'    => __( 'You can configure your general theme settings here' , 'education-lite')
+		'title'          => esc_html__( 'General settings' , 'education-lite'),
+		'description'    => esc_html__( 'You can configure your general theme settings here' , 'education-lite')
 	) );
 
 	// Add Header setting panel and configure settings inside it
 	$wp_customize->add_panel( 'education_header_panel', array(
 		'priority'       => 250,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Header settings' , 'education-lite'),
-		'description'    => __( 'You can configure your theme header settings here.' , 'education-lite')
-	) );
-
-	// Add Header setting panel and configure settings inside it
-	$wp_customize->add_panel( 'education_footer_panel', array(
-		'priority'       => 250,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Footer settings' , 'education-lite'),
-		'description'    => __( 'You can configure your theme footer settings here.' , 'education-lite')
+		'title'          => esc_html__( 'Header settings' , 'education-lite'),
+		'description'    => esc_html__( 'You can configure your theme header settings here.' , 'education-lite')
 	) );
 
 	// Website logo
 	$wp_customize->add_section( 'education_general_logo', array(
 		'priority'       => 10,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Website logo' , 'education-lite'),
-		'description'    => __( 'Please upload your logo, recommended logo size should be between 262x80' , 'education-lite'),
+		'title'          => esc_html__( 'Website logo' , 'education-lite'),
+		'description'    => esc_html__( 'Please upload your logo, recommended logo size should be between 262x80' , 'education-lite'),
 		'panel'          => 'education_general_panel'
 	) );
 
 	$wp_customize->add_setting( 'education_logo', array( 'sanitize_callback' => 'esc_url_raw' ) );
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'education_logo', array(
-		'label'    => __( 'Website logo', 'education-lite' ),
+		'label'    => esc_html__( 'Website logo', 'education-lite' ),
 		'section'  => 'education_general_logo',
 		'settings' => 'education_logo',
 	) ) );
@@ -75,45 +67,25 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'education_general_footerlogo', array(
 		'priority'       => 10,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Website footer logo' , 'education-lite'),
-		'description'    => __( 'Please upload your footer logo, recommended logo size should be between 262x80' , 'education-lite'),
+		'title'          => esc_html__( 'Website footer logo' , 'education-lite'),
+		'description'    => esc_html__( 'Please upload your footer logo, recommended logo size should be between 262x80' , 'education-lite'),
 		'panel'          => 'education_general_panel'
 	) );
 
 	$wp_customize->add_setting( 'education_footerlogo', array( 'sanitize_callback' => 'esc_url_raw' ) );
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'education_footerlogo', array(
-		'label'    => __( 'Website footer logo', 'education-lite' ),
+		'label'    => esc_html__( 'Website footer logo', 'education-lite' ),
 		'section'  => 'education_general_footerlogo',
 		'settings' => 'education_footerlogo',
 	) ) );
-
-	// Copyright
-	$wp_customize->add_section( 'education_general_copyright', array(
-		'priority'       => 20,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Copyright' , 'education-lite'),
-		'description'    => __( 'Please provide short copyright text which will be shown in footer.' , 'education-lite'),
-		'panel'          => 'education_general_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_copyright', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => 'Copyright &copy; 2015 Education' ) );
-
-	$wp_customize->add_control(
-		'education_copyright',
-		array(
-			'label'      => 'Copyright',
-			'section'    => 'education_general_copyright',
-			'type'       => 'text',
-		)
-	);
 
 	// Scroll to top
 	$wp_customize->add_section( 'education_general_scrolltotop', array(
 		'priority'       => 30,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Scroll to top' , 'education-lite'),
-		'description'    => __( 'Do you want to enable "Scroll to Top" button?' , 'education-lite'),
+		'title'          => esc_html__( 'Scroll to top' , 'education-lite'),
+		'description'    => esc_html__( 'Do you want to enable "Scroll to Top" button?' , 'education-lite'),
 		'panel'          => 'education_general_panel'
 	) );
 
@@ -122,7 +94,7 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'education_scrolltotop',
 		array(
-			'label'      => 'Scroll to top',
+			'label'      => esc_html__('Scroll to top', 'education-lite'),
 			'section'    => 'education_general_scrolltotop',
 			'type'       => 'checkbox',
 		)
@@ -132,15 +104,15 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'education_general_favicon', array(
 		'priority'       => 40,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Favicon' , 'education-lite'),
-		'description'    => __( 'Do you have favicon? You can upload it here.' , 'education-lite'),
+		'title'          => esc_html__( 'Favicon' , 'education-lite'),
+		'description'    => esc_html__( 'Do you have favicon? You can upload it here.' , 'education-lite'),
 		'panel'          => 'education_general_panel'
 	) );
 
 	$wp_customize->add_setting( 'education_favicon', array( 'sanitize_callback' => 'esc_url_raw' ) );
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'education_favicon', array(
-		'label'    => __( 'Favicon', 'education-lite' ),
+		'label'    => esc_html__( 'Favicon', 'education-lite' ),
 		'section'  => 'education_general_favicon',
 		'settings' => 'education_favicon',
 	) ) );
@@ -149,8 +121,8 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'education_general_layout', array(
 		'priority'       => 50,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Layout' , 'education-lite'),
-		'description'    => __( 'Choose a layout for your theme pages. Note that a widget has to be inside widget are, or the layout won\'t change.' , 'education-lite'),
+		'title'          => esc_html__( 'Layout' , 'education-lite'),
+		'description'    => esc_html__( 'Choose a layout for your theme pages. Note that a widget has to be inside widget are, or the layout won\'t change.' , 'education-lite'),
 		'panel'          => 'education_general_panel'
 	) );
 
@@ -169,8 +141,8 @@ function education_customize_register( $wp_customize ) {
 			'label' => 'Layout',
 			'section' => 'education_general_layout',
 			'choices' => array(
-				'full' => 'Full',
-				'right' => 'Right'
+				'full' => esc_html__('Full', 'education-lite'),
+				'right' => esc_html__('Right', 'education-lite')
 			)
 		)
 	);
@@ -179,8 +151,8 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'education_header_text', array(
 		'priority'       => 10,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Header text' , 'education-lite'),
-		'description'    => __( 'An text for your header.' , 'education-lite'),
+		'title'          => esc_html__( 'Header text' , 'education-lite'),
+		'description'    => esc_html__( 'An text for your header.' , 'education-lite'),
 		'panel'          => 'education_header_panel'
 	) );
 
@@ -189,7 +161,7 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'education_headertext',
 		array(
-			'label'      => 'Header text',
+			'label'      => esc_html__('Header text', 'education-lite'),
 			'section'    => 'education_header_text',
 			'type'       => 'text',
 		)
@@ -199,8 +171,8 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'education_header_email', array(
 		'priority'       => 20,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Email' , 'education-lite'),
-		'description'    => __( 'An email address for your theme header.' , 'education-lite'),
+		'title'          => esc_html__( 'Email' , 'education-lite'),
+		'description'    => esc_html__( 'An email address for your theme header.' , 'education-lite'),
 		'panel'          => 'education_header_panel'
 	) );
 
@@ -209,7 +181,7 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'education_headeremail',
 		array(
-			'label'      => 'Email',
+			'label'      => esc_html__('Email', 'education-lite'),
 			'section'    => 'education_header_email',
 			'type'       => 'text',
 		)
@@ -219,8 +191,8 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'education_header_phone', array(
 		'priority'       => 20,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Phone' , 'education-lite'),
-		'description'    => __( 'An Phone number for your theme header.' , 'education-lite'),
+		'title'          => esc_html__( 'Phone' , 'education-lite'),
+		'description'    => esc_html__( 'An Phone number for your theme header.' , 'education-lite'),
 		'panel'          => 'education_header_panel'
 	) );
 
@@ -229,168 +201,8 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'education_headerphone',
 		array(
-			'label'      => 'Phone',
+			'label'      => esc_html__('Phone', 'education-lite'),
 			'section'    => 'education_header_phone',
-			'type'       => 'text',
-		)
-	);
-
-	// Header facebook
-	$wp_customize->add_section( 'education_header_facebook', array(
-		'priority'       => 20,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Facebook URL' , 'education-lite'),
-		'description'    => __( 'Facebook URL for your header social icon.' , 'education-lite'),
-		'panel'          => 'education_header_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_headerfacebook', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_headerfacebook',
-		array(
-			'label'      => 'Facebook URL',
-			'section'    => 'education_header_facebook',
-			'type'       => 'text',
-		)
-	);
-
-	// Header youtube
-	$wp_customize->add_section( 'education_header_youtube', array(
-		'priority'       => 20,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'YouTube URL' , 'education-lite'),
-		'description'    => __( 'YouTube URL for your header social icon.' , 'education-lite'),
-		'panel'          => 'education_header_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_headeryoutube', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_headeryoutube',
-		array(
-			'label'      => 'YouTube URL',
-			'section'    => 'education_header_youtube',
-			'type'       => 'text',
-		)
-	);
-
-	// Header twitter
-	$wp_customize->add_section( 'education_header_twitter', array(
-		'priority'       => 20,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Twitter URL' , 'education-lite'),
-		'description'    => __( 'Twitter URL for your header social icon.' , 'education-lite'),
-		'panel'          => 'education_header_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_headertwitter', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_headertwitter',
-		array(
-			'label'      => 'Twitter URL',
-			'section'    => 'education_header_twitter',
-			'type'       => 'text',
-		)
-	);
-
-	// Header google plus
-	$wp_customize->add_section( 'education_header_gplus', array(
-		'priority'       => 20,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Google+ URL' , 'education-lite'),
-		'description'    => __( 'Google+ URL for your header social icon.' , 'education-lite'),
-		'panel'          => 'education_header_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_headergplus', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_headergplus',
-		array(
-			'label'      => 'Google+ URL',
-			'section'    => 'education_header_gplus',
-			'type'       => 'text',
-		)
-	);
-
-	// Footer facebook
-	$wp_customize->add_section( 'education_footer_facebook', array(
-		'priority'       => 10,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Facebook URL' , 'education-lite'),
-		'description'    => __( 'An URL to your facebook page.' , 'education-lite'),
-		'panel'          => 'education_footer_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_footerfacebook', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_footerfacebook',
-		array(
-			'label'      => 'Facebook URL',
-			'section'    => 'education_footer_facebook',
-			'type'       => 'text',
-		)
-	);
-
-	// Footer pinterest
-	$wp_customize->add_section( 'education_footer_pinterest', array(
-		'priority'       => 10,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Pinterest URL' , 'education-lite'),
-		'description'    => __( 'An URL to your pinterest page.' , 'education-lite'),
-		'panel'          => 'education_footer_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_footerpinterest', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_footerpinterest',
-		array(
-			'label'      => 'Pinterest URL',
-			'section'    => 'education_footer_pinterest',
-			'type'       => 'text',
-		)
-	);
-
-	// Footer twitter
-	$wp_customize->add_section( 'education_footer_twitter', array(
-		'priority'       => 10,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Twitter URL' , 'education-lite'),
-		'description'    => __( 'An URL to your twitter page.' , 'education-lite'),
-		'panel'          => 'education_footer_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_footertwitter', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_footertwitter',
-		array(
-			'label'      => 'Twitter URL',
-			'section'    => 'education_footer_twitter',
-			'type'       => 'text',
-		)
-	);
-
-	// Footer gplus
-	$wp_customize->add_section( 'education_footer_gplus', array(
-		'priority'       => 10,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Google+ URL' , 'education-lite'),
-		'description'    => __( 'An URL to your gplus page.' , 'education-lite'),
-		'panel'          => 'education_footer_panel'
-	) );
-
-	$wp_customize->add_setting( 'education_footergplus', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'education_footergplus',
-		array(
-			'label'      => 'Google+ URL',
-			'section'    => 'education_footer_gplus',
 			'type'       => 'text',
 		)
 	);
@@ -399,8 +211,8 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'education_google_maps_key', array(
 		'priority'       => 20,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Google maps key' , 'education-lite'),
-		'description'    => __( 'Google maps API key so theme can use Google maps API.' , 'education-lite'),
+		'title'          => esc_html__( 'Google maps key' , 'education-lite'),
+		'description'    => esc_html__( 'Google maps API key so theme can use Google maps API.' , 'education-lite'),
 		'panel'          => 'education_general_panel'
 	) );
 
@@ -409,7 +221,7 @@ function education_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'education_gmap_key',
 		array(
-			'label'      => 'Google maps key',
+			'label'      => esc_html__('Google maps key', 'education-lite'),
 			'section'    => 'education_google_maps_key',
 			'type'       => 'text',
 		)
@@ -538,12 +350,12 @@ function education_contextual_help() {
 
 	get_current_screen()->add_help_tab( array(
 		'id'      => 'education-lite',
-		'title'   => __( 'Education 1.0', 'education-lite' ),
+		'title'   => esc_html__( 'Education 1.0', 'education-lite' ),
 		'content' =>
 			'<ul>' .
-				'<li>' . sprintf( __( 'The home page features your choice of up to 6 posts prominently displayed in a grid or slider, controlled by the <a href="%1$s">featured</a> tag; you can change the tag and layout in <a href="%2$s">Appearance &rarr; Customize</a>. If no posts match the tag, <a href="%3$s">sticky posts</a> will be displayed instead.', 'education-lite' ), admin_url( '/edit.php?tag=featured' ), admin_url( 'customize.php' ), admin_url( '/edit.php?show_sticky=1' ) ) . '</li>' .
-				'<li>' . sprintf( __( 'Enhance your site design by using <a href="%s">Featured Images</a> for posts you&rsquo;d like to stand out (also known as post thumbnails). This allows you to associate an image with your post without inserting it. Education 1.0 uses featured images for posts and pages&mdash;above the title&mdash;and in the Featured Content area on the home page.', 'education-lite' ), 'http://codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail' ) . '</li>' .
-				'<li>' . sprintf( __( 'For an in-depth tutorial, and more tips and tricks, visit the <a href="%s">Education 1.0 documentation</a>.', 'education-lite' ), 'http://codex.wordpress.org/Education' ) . '</li>' .
+				'<li>' . sprintf( esc_html__( 'The home page features your choice of up to 6 posts prominently displayed in a grid or slider, controlled by the <a href="%1$s">featured</a> tag; you can change the tag and layout in <a href="%2$s">Appearance &rarr; Customize</a>. If no posts match the tag, <a href="%3$s">sticky posts</a> will be displayed instead.', 'education-lite' ), admin_url( '/edit.php?tag=featured' ), admin_url( 'customize.php' ), admin_url( '/edit.php?show_sticky=1' ) ) . '</li>' .
+				'<li>' . sprintf( esc_html__( 'Enhance your site design by using <a href="%s">Featured Images</a> for posts you&rsquo;d like to stand out (also known as post thumbnails). This allows you to associate an image with your post without inserting it. Education 1.0 uses featured images for posts and pages&mdash;above the title&mdash;and in the Featured Content area on the home page.', 'education-lite' ), 'http://codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail' ) . '</li>' .
+				'<li>' . sprintf( esc_html__( 'For an in-depth tutorial, and more tips and tricks, visit the <a href="%s">Education 1.0 documentation</a>.', 'education-lite' ), 'http://codex.wordpress.org/Education' ) . '</li>' .
 			'</ul>',
 	) );
 }

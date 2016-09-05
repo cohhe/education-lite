@@ -91,8 +91,8 @@ if ( ! function_exists( 'education_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in two locations.
 		register_nav_menus( array(
-			'primary'   => __( 'Top primary menu', 'education-lite' ),
-			'footer'    => __( 'Footer menu', 'education-lite' ),
+			'primary'   => esc_html__( 'Top primary menu', 'education-lite' ),
+			'footer'    => esc_html__( 'Footer menu', 'education-lite' ),
 		) );
 
 		/*
@@ -125,53 +125,13 @@ endif; // education_setup
 add_action( 'after_setup_theme', 'education_setup' );
 
 // Admin CSS
-function vh_admin_css() {
-	wp_enqueue_style( 'vh-admin-css', get_template_directory_uri() . '/css/wp-admin.css' );
+function education_admin_css() {
+	wp_enqueue_style( 'education-admin-css', get_template_directory_uri() . '/css/wp-admin.css' );
 }
-add_action('admin_head','vh_admin_css');
+add_action('admin_head','education_admin_css');
 
 function education_is_blog() {
 	return get_option('page_for_posts');
-}
-
-function education_get_social_icons() {
-	$facebook = get_theme_mod('education_headerfacebook', '');
-	$youtube = get_theme_mod('education_headeryoutube', '');
-	$twitter = get_theme_mod('education_headertwitter', '');
-	$gplus = get_theme_mod('education_headergplus', '');
-	$output = '';
-	$count = 1;
-	$class = 'count-';
-
-	if ( $facebook != '' || $youtube != '' || $twitter != '' || $gplus != '' ) {
-		$output .= '
-		<div class="header-share-icons">
-			<a href="javascript:void(0)" class="header-share icon-share"></a>
-			<div class="header-icon-wrapper">';
-				if ( $facebook != '' ) {
-					$output .= '<a href="' . $facebook . '" class="header-social ' . $class . $count . ' icon-facebook"></a>';
-					$count++;
-				}
-
-				if ( $youtube != '' ) {
-					$output .= '<a href="' . $youtube . '" class="header-social ' . $class . $count . ' icon-youtube-play"></a>';
-					$count++;
-				}
-
-				if ( $twitter != '' ) {
-					$output .= '<a href="' . $twitter . '" class="header-social ' . $class . $count . ' icon-twitter"></a>';
-					$count++;
-				}
-
-				if ( $gplus != '' ) {
-					$output .= '<a href="' . $gplus . '" class="header-social ' . $class . $count . ' icon-gplus"></a>';
-					$count++;
-				}
-			
-		$output .= '<div class="clearfix"></div></div></div>';
-	}
-
-	return $output;
 }
 
 function education_tag_list() {
@@ -180,8 +140,8 @@ function education_tag_list() {
 	if ( $tags_list ) {
 		$entry_utility .= '
 		<div class="tag-link">
-		<span class="tag-title">'.__('Tags', 'education-lite').'</span>
-		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'education-lite' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
+		<span class="tag-title">'.esc_html__('Tags', 'education-lite').'</span>
+		' . sprintf( esc_html__( '<span class="%1$s"></span> %2$s', 'education-lite' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
 		$entry_utility .= '
 		</div>';
 	}
@@ -196,25 +156,12 @@ function education_category_list() {
 		$entry_utility .= '
 		<div class="category-link">
 		<i class="entypo_icon icon-folder-open"></i>
-		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'education-lite' ), 'entry-utility-prep entry-utility-prep-category-links', $tags_list );
+		' . sprintf( esc_html__( '<span class="%1$s"></span> %2$s', 'education-lite' ), 'entry-utility-prep entry-utility-prep-category-links', $tags_list );
 		$entry_utility .= '
 		</div>';
 	}
 
 	echo $entry_utility;
-}
-
-function education_share_icons() {
-	$output = '<div class="single-open-post-share">';
-	$output .= '<a href="http://www.facebook.com/sharer.php?u=' . get_permalink() . '" class="social-icon icon-facebook" target="_blank"></a>';
-	$output .= '<a href="http://twitter.com/share?url=' . get_permalink() . '&amp;text=' . urlencode( get_the_title() ) . '" class="social-icon icon-twitter" target="_blank"></a>';
-	$output .= '<a href="https://www.linkedin.com/shareArticle?mini=true&url=' . urlencode( get_the_permalink() ) . '&title=' . urlencode( get_the_title() ) . '" class="single-share-linkedin icon-linkedin"></a>';
-	$output .= '<a href="http://tumblr.com/widgets/share/tool?canonicalUrl=' . urlencode( get_the_permalink() ) . '" class="single-share-tumblr icon-tumblr"></a>';
-	$output .= '<a href="https://plus.google.com/share?url=' . get_permalink() . '" class="social-icon icon-gplus" target="_blank"></a>';
-	$output .= "<a href=\"javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','//assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());\" class=\"social-icon icon-pinterest\" target=\"_blank\"></a>";
-	$output .= '</div>';
-
-	echo $output;
 }
 
 function education_prev_next_links() {
@@ -225,7 +172,7 @@ function education_prev_next_links() {
 		if (!empty( $prev_post )) {
 			$output .= '
 			<div class="nav_button left">
-				<h3 class="prev-post-text">'. __('Previous post', 'education-lite').'</h3>
+				<h3 class="prev-post-text">'. esc_html__('Previous post', 'education-lite').'</h3>
 				<div class="prev-post-link">
 					<a href="'. get_permalink( $prev_post->ID ).'" class="prev_blog_post icon-left">'.get_the_title( $prev_post->ID ).'</a>
 				</div>
@@ -235,7 +182,7 @@ function education_prev_next_links() {
 		if (!empty( $next_post )) {
 			$output .= '
 			<div class="nav_button right">
-				<h3 class="next-post-text">'.__('Next post', 'education-lite').'</h3>
+				<h3 class="next-post-text">'.esc_html__('Next post', 'education-lite').'</h3>
 				<div class="next-post-link">
 					<a href="'. get_permalink( $next_post->ID ).'" class="next_blog_post icon-right">'. get_the_title( $next_post->ID ).'</a>
 				</div>
@@ -318,29 +265,29 @@ function education_has_featured_posts() {
  */
 function education_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Post Sidebar', 'education-lite' ),
+		'name'          => esc_html__( 'Post Sidebar', 'education-lite' ),
 		'id'            => 'education-sidebar-1',
 		'class'			=> 'col-sm-4 col-md-4 col-lg-4',
-		'description'   => __( 'Additional sidebar that appears on the right or left.', 'education-lite' ),
+		'description'   => esc_html__( 'Additional sidebar that appears on the right or left.', 'education-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Content Sidebar', 'education-lite' ),
+		'name'          => esc_html__( 'Content Sidebar', 'education-lite' ),
 		'id'            => 'education-sidebar-2',
 		'class'			=> 'col-sm-4 col-md-4 col-lg-4',
-		'description'   => __( 'Additional sidebar that appears on the right or left.', 'education-lite' ),
+		'description'   => esc_html__( 'Additional sidebar that appears on the right or left.', 'education-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Footer Widget Area 1', 'education-lite' ),
+		'name'          => esc_html__( 'Footer Widget Area 1', 'education-lite' ),
 		'id'            => 'education-sidebar-3',
-		'description'   => __( 'Appears in the footer section of the site.', 'education-lite' ),
+		'description'   => esc_html__( 'Appears in the footer section of the site.', 'education-lite' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -389,9 +336,9 @@ function education_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'education_excerpt_length', 999 );
 
 function education_breadcrumbs() {
-	$delimiter = get_option('vh_breadcrumb_delimiter') ? get_option('vh_breadcrumb_delimiter') : '<span class="delimiter">/</span>';
+	$delimiter = get_option('education_breadcrumb_delimiter') ? get_option('education_breadcrumb_delimiter') : '<span class="delimiter">/</span>';
 
-	$home   = __('Home', 'education-lite'); // text for the 'Home' link
+	$home   = esc_html__('Home', 'education-lite'); // text for the 'Home' link
 	$before = '<span class="current">'; // tag before the current crumb
 	$after  = '</span>'; // tag after the current crumb
 
@@ -410,7 +357,7 @@ function education_breadcrumbs() {
 			$parentCat = get_category($thisCat->parent);
 			if ($thisCat->parent != 0)
 				$output .= get_category_parents($parentCat, TRUE, ' ' . $delimiter . ' ');
-			$output .= $before . 'Archive by category "' . single_cat_title('', false) . '"' . $after;
+			$output .= $before . esc_html__('Archive by category', 'education-lite').' "' . single_cat_title('', false) . '"' . $after;
 		} elseif (is_day()) {
 			$output .= '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' ';
 			$output .= '<a href="' . get_month_link(get_the_time('Y'), get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $delimiter . ' ';
@@ -461,21 +408,21 @@ function education_breadcrumbs() {
 			}
 			$output .= $before . get_the_title() . $after;
 		} elseif (is_search()) {
-			$output .= $before . 'Search results for "' . get_search_query() . '"' . $after;
+			$output .= $before . esc_html__('Search results for', 'education-lite').' "' . get_search_query() . '"' . $after;
 		} elseif (is_tag()) {
-			$output .= $before . 'Posts tagged "' . single_tag_title('', false) . '"' . $after;
+			$output .= $before . esc_html__('Posts tagged', 'education-lite').' "' . single_tag_title('', false) . '"' . $after;
 		} elseif (is_author()) {
-			global $vh_author;
-			$userdata = get_userdata($vh_author);
-			$output .= $before . 'Articles posted by ' . get_the_author() . $after;
+			global $education_author;
+			$userdata = get_userdata($education_author);
+			$output .= $before . esc_html__('Articles posted by', 'education-lite').' ' . get_the_author() . $after;
 		} elseif (is_404()) {
-			$output .= $before . 'Error 404' . $after;
+			$output .= $before . esc_html__('Error 404', 'education-lite') . $after;
 		}
 
 		if (get_query_var('paged')) {
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ' (';
-			$output .= __('Page', 'education-lite') . ' ' . get_query_var('paged');
+			$output .= esc_html__('Page', 'education-lite') . ' ' . get_query_var('paged');
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ')';
 		}
@@ -702,10 +649,10 @@ function education_the_related_posts() {
 								if ( has_post_thumbnail() ) {
 									the_post_thumbnail('education-medium-thumbnail');
 								} else {
-									echo '<img src="'.get_template_directory_uri().'/images/no-post-img.png" class="related-post-image" alt="'.__('Post without image', 'education-lite').'">';
+									echo '<img src="'.get_template_directory_uri().'/images/no-post-img.png" class="related-post-image" alt="'.esc_html__('Post without image', 'education-lite').'">';
 								}
 								?>
-								<span class="single-open-post-date"><?php echo human_time_diff(get_the_time('U',get_the_ID()),current_time('timestamp')) .  ' '.__('ago', 'education-lite'); ?></span>
+								<span class="single-open-post-date"><?php echo human_time_diff(get_the_time('U',get_the_ID()),current_time('timestamp')) .  ' '.esc_html__('ago', 'education-lite'); ?></span>
 							</div>
 						</a>
 						<a href="<?php the_permalink(); ?>" class="related-title"><?php the_title(); ?></a>
@@ -750,7 +697,7 @@ function education_wp_title( $title, $sep ) {
 
 	// Add a page number if necessary.
 	if ( $paged >= 2 || $page >= 2 ) {
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'education-lite' ), max( $paged, $page ) );
+		$title = "$title $sep " . sprintf( esc_html__( 'Page %s', 'education-lite' ), max( $paged, $page ) );
 	}
 
 	return $title;
@@ -890,16 +837,6 @@ class Education_Header_Menu_Walker extends Walker_Nav_Menu {
 	}
 }
 
-function get_depth($postid) {
-$depth = ($postid==get_option('page_on_front')) ? -1 : 0;
-while ($postid > 0) {
-$postid = get_post_ancestors($postid);
-$postid = $postid[0];
-$depth++;
-}
-return $depth;
-}
-
 /**
  * Register the required plugins for this theme.
  *
@@ -912,7 +849,7 @@ return $depth;
  * This function is hooked into tgmpa_init, which is fired within the
  * TGM_Plugin_Activation class constructor.
  */
-function vh_register_required_plugins() {
+function education_register_required_plugins() {
 
 	/**
 	 * Array of plugin arrays. Required keys are name and slug.
@@ -920,77 +857,32 @@ function vh_register_required_plugins() {
 	 */
 	$plugins = array(
 		array(
-			'name'     				=> 'Bootstrap 3 Shortcodes', // The plugin name
+			'name'     				=> esc_html__('Bootstrap 3 Shortcodes', 'education-lite'), // The plugin name
 			'slug'     				=> 'bootstrap-3-shortcodes', // The plugin slug (typically the folder name)
 			'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-			'version' 				=> '3.3.6', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'version' 				=> '3.3.10', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
 		),
-		// array(
-		// 	'name'     				=> 'Contact Form 7', // The plugin name
-		// 	'slug'     				=> 'contact-form-7', // The plugin slug (typically the folder name)
-		// 	'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-		// 	'version' 				=> '4.3', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-		// 	'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-		// 	'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-		// 	'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		// ),
-		// array(
-		// 	'name'     				=> 'Easy Social Icons', // The plugin name
-		// 	'slug'     				=> 'easy-social-icons', // The plugin slug (typically the folder name)
-		// 	'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-		// 	'version' 				=> '1.2.4.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-		// 	'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-		// 	'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-		// 	'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		// ),
 		array(
-			'name'     				=> 'Easy Testimonials', // The plugin name
+			'name'     				=> esc_html__('Easy Testimonials', 'education-lite'), // The plugin name
 			'slug'     				=> 'easy-testimonials', // The plugin slug (typically the folder name)
 			'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-			'version' 				=> '1.31.11', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'version' 				=> '1.35.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
 		),
 		array(
-			'name'     				=> 'Functionality for Education theme', // The plugin name
+			'name'     				=> esc_html__('Functionality for Education theme', 'education-lite'), // The plugin name
 			'slug'     				=> 'functionality-for-education-theme', // The plugin slug (typically the folder name)
 			'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-			'version' 				=> '1.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'version' 				=> '1.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		),
-		// array(
-		// 	'name'     				=> 'Like Dislike counter', // The plugin name
-		// 	'slug'     				=> 'like-dislike-counter-for-posts-pages-and-comments', // The plugin slug (typically the folder name)
-		// 	'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-		// 	'version' 				=> '1.3.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-		// 	'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-		// 	'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-		// 	'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		// ),
-		// array(
-		// 	'name'     				=> 'Newsletter', // The plugin name
-		// 	'slug'     				=> 'newsletter', // The plugin slug (typically the folder name)
-		// 	'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-		// 	'version' 				=> '3.9.6', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-		// 	'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-		// 	'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-		// 	'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		// ),
-		// array(
-		// 	'name'     				=> 'WP-PostViews', // The plugin name
-		// 	'slug'     				=> 'wp-postviews', // The plugin slug (typically the folder name)
-		// 	'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
-		// 	'version' 				=> '1.71', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-		// 	'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-		// 	'force_deactivation' 	=> false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-		// 	'external_url' 			=> '', // If set, overrides default API URL and points to an external URL
-		// )
+		)
 	);
 
 	/**
@@ -1003,17 +895,16 @@ function vh_register_required_plugins() {
 	$config = array(
 		'domain'       		=> 'education-lite',         	// Text domain - likely want to be the same as your theme.
 		'default_path' 		=> '',                         	// Default absolute path to pre-packaged plugins
-		'parent_menu_slug' 	=> 'themes.php', 				// Default parent menu slug
-		'parent_url_slug' 	=> 'themes.php', 				// Default parent URL slug
+		'parent_slug' 		=> 'themes.php', 				// Default parent menu slug
 		'menu'         		=> 'install-required-plugins', 	// Menu slug
 		'has_notices'      	=> true,                       	// Show admin notices or not
 		'is_automatic'    	=> true,					   	// Automatically activate plugins after installation or not
 		'message' 			=> '',							// Message to output right before the plugins table
 		'strings'      		=> array(
-			'page_title'                       			=> __( 'Install Required Plugins', 'education-lite' ),
-			'menu_title'                       			=> __( 'Install Plugins', 'education-lite' ),
-			'installing'                       			=> __( 'Installing Plugin: %s', 'education-lite' ), // %1$s = plugin name
-			'oops'                             			=> __( 'Something went wrong with the plugin API.', 'education-lite' ),
+			'page_title'                       			=> esc_html__( 'Install Required Plugins', 'education-lite' ),
+			'menu_title'                       			=> esc_html__( 'Install Plugins', 'education-lite' ),
+			'installing'                       			=> esc_html__( 'Installing Plugin: %s', 'education-lite' ), // %1$s = plugin name
+			'oops'                             			=> esc_html__( 'Something went wrong with the plugin API.', 'education-lite' ),
 			'notice_can_install_required'     			=> _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'education-lite' ), // %1$s = plugin name(s)
 			'notice_can_install_recommended'			=> _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'education-lite' ), // %1$s = plugin name(s)
 			'notice_cannot_install'  					=> _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'education-lite' ), // %1$s = plugin name(s)
@@ -1024,25 +915,16 @@ function vh_register_required_plugins() {
 			'notice_cannot_update' 						=> _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'education-lite' ), // %1$s = plugin name(s)
 			'install_link' 					  			=> _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'education-lite' ),
 			'activate_link' 				  			=> _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'education-lite' ),
-			'return'                           			=> __( 'Return to Required Plugins Installer', 'education-lite' ),
-			'plugin_activated'                 			=> __( 'Plugin activated successfully.', 'education-lite' ),
-			'complete' 									=> __( 'All plugins installed and activated successfully. %s', 'education-lite' ), // %1$s = dashboard link
+			'return'                           			=> esc_html__( 'Return to Required Plugins Installer', 'education-lite' ),
+			'plugin_activated'                 			=> esc_html__( 'Plugin activated successfully.', 'education-lite' ),
+			'complete' 									=> esc_html__( 'All plugins installed and activated successfully. %s', 'education-lite' ), // %1$s = dashboard link
 			'nag_type'									=> 'updated' // Determines admin notice type - can only be 'updated' or 'error'
 		)
 	);
 
 	tgmpa( $plugins, $config );
 }
-add_action( 'tgmpa_register', 'vh_register_required_plugins' );
-
-function education_allowed_tags() {
-	global $allowedposttags;
-	$allowedposttags['script'] = array(
-		'type' => true,
-		'src' => true
-	);
-}
-add_action( 'init', 'education_allowed_tags' );
+add_action( 'tgmpa_register', 'education_register_required_plugins' );
 
 /* Remove learnpress actions */
 remove_action( 'learn_press_content_landing_summary', 'learn_press_course_title', 10 );

@@ -4,7 +4,7 @@
  */
 
 $config = array(
-	'id'       => 'vh_layouts',
+	'id'       => 'education_layouts',
 	'title'    => __('Layouts', 'education-lite'),
 	'pages'    => array('page', 'post'),
 	'context'  => 'normal',

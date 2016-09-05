@@ -21,7 +21,7 @@ get_header();
 global $education_site_width;
 ?>
 
-	<section id="primary" class="content-area <?php echo $education_site_width; ?>">
+	<section id="primary" class="content-area <?php echo esc_attr($education_site_width); ?>">
 		<div id="content" class="site-content" role="main">
 
 			<?php if ( have_posts() ) : ?>
@@ -30,28 +30,28 @@ global $education_site_width;
 				<h1 class="archive-title">
 					<?php
 						if ( is_tax( 'post_format', 'post-format-aside' ) ) :
-							_e( 'Asides', 'education-lite' );
+							esc_html_e( 'Asides', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-							_e( 'Images', 'education-lite' );
+							esc_html_e( 'Images', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-							_e( 'Videos', 'education-lite' );
+							esc_html_e( 'Videos', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-audio' ) ) :
-							_e( 'Audio', 'education-lite' );
+							esc_html_e( 'Audio', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-							_e( 'Quotes', 'education-lite' );
+							esc_html_e( 'Quotes', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-							_e( 'Links', 'education-lite' );
+							esc_html_e( 'Links', 'education-lite' );
 
 						elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) :
-							_e( 'Galleries', 'education-lite' );
+							esc_html_e( 'Galleries', 'education-lite' );
 
 						else :
-							_e( 'Archives', 'education-lite' );
+							esc_html_e( 'Archives', 'education-lite' );
 
 						endif;
 					?>

@@ -1,4 +1,11 @@
 Education changelog
 
-= Version 1.0 =
+= Version 1.3 =
+* Fixed few text domain related issues
+* Escaped data
+* Moved and/or deleted some functions/templates
+* Updated TGMPA
+* Fixed theme check issues
+
+= Version 1.2 =
 * Initial release

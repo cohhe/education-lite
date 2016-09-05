@@ -4,10 +4,10 @@ Theme URI: https://cohhe.com/project-view/education/
 Author: Cohhe
 Author URI: https://cohhe.com/
 Description: Enhance your story experience, by leveraging the power of Education Wordpress Theme, built especially for telling great stories. It is the only free WordPress theme fully compatible with the Aesop Story Engine.
-Version: 1.2
+Version: 1.3
 License: GNU General Public License v3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: black, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-background, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, sticky-post, theme-options, translation-ready
+Tags: two-columns, three-columns, left-sidebar, right-sidebar, custom-background, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, sticky-post, theme-options, translation-ready
 Text Domain: education 
 
 This theme, like WordPress, is licensed under the GPL.
@@ -3122,6 +3122,10 @@ article .entry-content table tr:nth-child(even) {
 
 .navbar-toggle .icon-bar {
 	background-color: #fab307;
+}
+
+.header-share-icons {
+	float: right;
 }
 
 /* Mobile */

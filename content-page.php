@@ -15,7 +15,7 @@
 		</div>
 		<?php
 			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'education-lite' ) . '</span>',
+				'before'      => '<div class="page-links"><span class="page-links-title">' . esc_html__( 'Pages:', 'education-lite' ) . '</span>',
 				'after'       => '<div class="clearfix"></div></div>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',

@@ -95,13 +95,15 @@ $header_text = get_theme_mod('education_headertext', '');
 					<?php if ( $header_email ) { ?>
 						<a href="mail:<?php echo esc_url($header_email); ?>" class="header-mail icon-mail"><?php echo $header_email; ?></a>
 					<?php } ?>
+					<?php if ( function_exists('education_get_social_icons') ) { echo education_get_social_icons(); } ?>
 				</div>
+				
 			</div>
 			<div class="header-main">
 				<div class="site-title">
 					<?php
 					if ( ! empty ( $logo ) ) { ?>
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo $logo; ?>" alt="<?php _e("Logo", "education-lite"); ?>"></a>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo $logo; ?>" alt="<?php esc_html_e("Logo", "education-lite"); ?>"></a>
 						<?php
 					} else { ?>
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="site-title"><?php bloginfo( 'name' ); ?></a>

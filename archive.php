@@ -22,7 +22,7 @@ get_header();
 global $education_site_width;
 ?>
 <div id="main-content" class="main-content row">
-	<section id="primary" class="content-area <?php echo $education_site_width; ?>">
+	<section id="primary" class="content-area <?php echo esc_attr($education_site_width); ?>">
 		<div id="content" class="site-content" role="main">
 
 			<?php if ( have_posts() ) : ?>
